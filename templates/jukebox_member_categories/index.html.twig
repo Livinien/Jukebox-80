@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JUKEBOX - CATEGORIES{% endblock %}
+
+
+{# PAGE CATEGORIES #}
+
+{% block content %}
+
+
+{# PAGE CATEGORIES UNIQUEMENT AUX MEMBRES DU SITE #}
+
+{% if is_granted('ROLE_MEMBER') %}
+
+<div class="image-background-categories">
+
+    <h1 class="mb-5 pt-5 d-flex justify-content-center">Catégories</h1>
+
+
+    <div class="parent d-flex">
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                    <img src="./assets/Images/Concert.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">CONCERT</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                        <img src="./assets/Images/Chill.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">CHILL</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                        <img src="./assets/Images/Electro.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">ELECTRO</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                        <img src="./assets/Images/Classique.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">CLASSIQUE</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+{# PAGE ACATEGORIES UNIQUEMENT À L'ADMINISTRATEUR #}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<div class="image-background-categories">
+
+    <h1 class="mb-5 pt-5 d-flex justify-content-center">Catégories</h1>
+
+
+    <div class="parent d-flex">
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                    <img src="./assets/Images/Concert.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">CONCERT</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                        <img src="./assets/Images/Chill.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">CHILL</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                        <img src="./assets/Images/Electro.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">ELECTRO</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>
+                <div class="card ms-5 position-relative">
+                        <img src="./assets/Images/Classique.jpg" class="card-img" alt="">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title position-absolute top-50 start-50 translate-middle border border-0">CLASSIQUE</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}

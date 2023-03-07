@@ -36,7 +36,7 @@ class RegisterController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {
             
             $user = $form->getData();
 
@@ -48,6 +48,8 @@ class RegisterController extends AbstractController
             $this->entityManager->persist($user);
             // Tu prends l'objet (data) que tu as figé et tu l'enregistres en base de données
             $this->entityManager->flush();
+
+            return $this->redirectToRoute("app_login");
         }
         
         return $this->render('register/index.html.twig', [

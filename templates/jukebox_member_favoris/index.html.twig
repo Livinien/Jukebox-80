@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}JUKEBOX - FAVORIS{% endblock %}
+
+
+{# PAGE FAVORIS #}
+
+{% block content %}
+
+
+
+{# PAGE FAVORIS UNIQUEMENT AUX MEMBRES #}
+
+{% if is_granted('ROLE_MEMBER') %}
+
+<div class="image-background-favoris">
+
+    <h1 class="mb-5 pt-5 d-flex justify-content-center">Favoris</h1>
+    
+</div>
+
+{% endif %}
+
+
+
+{# PAGE FAVORIS UNIQUEMENT À L'ADMINITRATEUR #}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<div class="image-background-favoris">
+    <h1 class="mb-5 pt-5 d-flex justify-content-center">Favoris</h1>
+</div>
+
+{% endif %}
+
+{% endblock %}

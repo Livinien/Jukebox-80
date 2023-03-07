@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JUKEBOX 80 - PROFIL{% endblock %}
+
+
+{# PAGE DE PROFIL #}
+
+{% block content %}
+
+<div class="image-background-profil">
+
+    <h1 class="mb-5 pt-5 d-flex justify-content-center">Profil</h1>
+    <p class="m-5"><strong>Bienvenue {{app.user.firstname}}</strong> sur votre profil.<br>
+    Vous pouvez dès à présent gérer vos informations personnelles</p>
+
+
+
+    {# MESSAGE UNIQUEMENT POUR L'ADMINISTRATEUR DU SITE JUKEBOX #}
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+    <p class="fw-bold text-decoration-none text-light ms-5">Vous êtes<strong> ADMINISTRATEUR JUKEBOX 80</strong></p>
+
+    {% endif %}
+
+
+
+    {# MESSAGE UNIQUEMENT POUR LES MEMBRES INSCRIT #}
+
+    {% if is_granted('ROLE_MEMBER') %}
+
+    <p class="member fw-bold text-decoration-none text-light ms-5">Vous faites partie des <strong>MEMBRES JUKEBOX 80</strong></p>
+
+    {% endif %}
+
+
+
+   
+
+    <hr class="m-5 w-75">
+
+
+
+    {# UNIQUEMENT L'ADMIN PEUT ACCÉDER À CE LIEN #}
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+    <a href="/admin" class="fw-bold text-decoration-none text-light ms-5">- J'accède au Backoffice</a><br>
+
+    {% endif %}
+
+
+
+    {# TOUT LE MONDE PEUT ACCÉDER À CE LIEN #}
+
+    <a href="{{ path('app_account_password')}}" class="modifier-mon-mot-de-passe fw-bold text-decoration-none text-light ms-5">- Modifier mon mot de passe</a><br/>
+
+</div>
+
+{% endblock %}

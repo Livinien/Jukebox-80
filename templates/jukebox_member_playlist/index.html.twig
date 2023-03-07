@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}JUKEBOX 80 - PLAYLIST{% endblock %}
+
+
+{# PAGE PLAYLIST #}
+
+
+{% block content %}
+
+
+{# PAGE PLAYLIST UNIQUEMENT AUX MEMBRES #}
+
+{% if is_granted('ROLE_MEMBER') %}
+
+
+<div class="image-background-playlist">
+
+    <h1 class="playlist mb-5 pt-5 d-flex justify-content-center">Playlist</h1>
+
+    <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+    slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+    coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+
+    {% for music in music %}
+
+    <swiper-slide>
+        <h5 class="artiste">{{ music.artist }}</h5>
+        <h1 class="titre-musique">{{ music.title }}</h1>
+        <i class="far fa-heart js-heart heart"></i>
+        <img src="{{ asset('uploads/'~music.image~'') }}"/>
+        <audio controls src="{{ asset('uploads/'~music.musicmp3~'') }}" class="musique-audio"></audio>
+    </swiper-slide>
+
+    {% endfor %}
+
+  </swiper-container>
+
+</div>
+
+ {% endif %}
+
+
+
+
+{# PAGE PLAYLIST UNIQUEMENT À L'ADMINITRATEUR #}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<div class="image-background-playlist">
+
+    <h1 class="playlist mb-5 pt-5 d-flex justify-content-center">Playlist</h1>
+
+    <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+    slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+    coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+
+    {% for music in music %}
+
+    <swiper-slide>
+        <h5 class="artiste">{{ music.artist }}</h5>
+        <i class="far fa-heart js-heart heart"></i>
+        <h1 class="titre-musique">{{ music.title }}</h1>
+        <img src="{{ asset('uploads/'~music.image~'') }}"/>
+        <audio controls src="{{ asset('uploads/'~music.musicmp3~'') }}" class="musique-audio"></audio>
+    </swiper-slide>
+
+    {% endfor %}
+
+  </swiper-container>
+
+</div>
+
+{% endif %}
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+{% endblock %}
