@@ -11,7 +11,7 @@ class JukeboxMemberFavorisController extends AbstractController
 {
 
     
-    
+     
     #[IsGranted('ROLE_MEMBER', 'ROLE_ADMIN')]
     #[Route('/favoris', name: 'app_jukebox_member_favoris')]
     public function index(): Response
