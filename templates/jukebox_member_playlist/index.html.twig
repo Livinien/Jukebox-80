@@ -60,7 +60,7 @@
 
     <swiper-slide>
         <h5 class="artiste">{{ music.artist }}</h5>
-        <i class="far fa-heart js-heart heart"></i>
+        <i class="far fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i>
         <h1 class="titre-musique">{{ music.title }}</h1>
         <img src="{{ asset('uploads/'~music.image~'') }}"/>
         <audio controls src="{{ asset('uploads/'~music.musicmp3~'') }}" class="musique-audio"></audio>

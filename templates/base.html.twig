@@ -17,53 +17,6 @@
 
   <body>
 
-    <!-- MODAL -->
-    {% if is_granted('ROLE_ADMIN') %}
-
-      <div class="modal fade mt-5" data-bs-theme="dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une Musique</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-light">
-
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Titre de la musique</label>
-                    <input type="text" class="form-control" id="titre-musique">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Artiste</label>
-                    <input type="text" class="form-control" id="artist">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="formFile" class="form-label">Ajouter la pochette de l'album</label>
-                    <input class="form-control" type="file" id="image">
-                  </div>
-            
-                  <div class="mb-3">
-                    <label for="formFile" class="form-label">Ajouter la musique en mp3</label>
-                    <input class="form-control" type="file" id="mp3">
-                  </div>
-            
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary fw-bold">Ajouter</button>
-                  </div>
-                </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
-
-
                   {# HEADER - NAVABAR - PAGE D'ACCUEIL #}
 
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -76,21 +29,11 @@
         <div class="navbar-nav ">
 
         {% if app.user %}
-
-          {% if is_granted('ROLE_ADMIN') %}
-              
-                                <!-- BOUTON MODAL "+ AJOUTER" -->
-              <button type="button" class="fw-bold btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                + Ajouter
-              </button>
-              
-          {% endif %}
-
-              <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_playlist')}}">Playlist</a> 
-              <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_categories')}}">Catégories</a> 
-              <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_favoris')}}">Favoris</a> 
-              <a class="nav-link text-light fw-bold active" href="{{ path('app_account')}}">Profil ({{ app.user.firstname }})</a> 
-              <a class="nav-link text-light fw-bold active" href="{{ path('app_logout')}}">Déconnexion</a>
+          <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_playlist')}}">Playlist</a> 
+          <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_categories')}}">Catégories</a> 
+          <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_favoris')}}">Favoris</a> 
+          <a class="nav-link text-light fw-bold active" href="{{ path('app_account')}}">Profil ({{ app.user.firstname }})</a> 
+          <a class="nav-link text-light fw-bold active" href="{{ path('app_logout')}}">Déconnexion</a>
           {% else %}
               <a class="nav-link text-light fw-bold active" href="{{ path('register')}}">Inscription</a> <a class="nav-link text-light fw-bold active" href="{{ path('app_login')}}">Connexion</a>
           {% endif %}
