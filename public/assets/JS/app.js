@@ -1,4 +1,5 @@
 
+
 // ANIMATION DU COEUR POUR LE LIKE D'UNE MUSIQUE
 
 const heart = document.querySelectorAll('.js-heart');

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -53,11 +54,16 @@ class RegisterType extends AbstractType
                 'invalid_message' => 'Les deux champs du mot de passe doivent être identiques',
                 'label' => 'Mot de Passe',
                 'required' => true,
+                'constraints' => [
+                    new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
+                    "Vous devez impérativement avoir 8 caractères minimum, contenant des chiffres, lettres, majuscules, minuscules et des caractères spéciaux pour créer votre compte.")
+                ],
                 'first_options' => [
                     'label' => 'Mot de Passe',
                     'attr' => [
                         'placeholder' => 'Entrez votre mot de passe'
-                    ]
+                    ],
+                    'help' => "*Vous avez besoin d'un mot de passe de 8 caractères minimum, contenant des chiffres, lettres, majuscules, minuscules et des caractères spéciaux.",
                 ],
                 'second_options' => [
                     'label'=> 'Confirmez votre mot de passe',

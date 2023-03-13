@@ -10,25 +10,97 @@
 
 
 
+{# PAGE FAVORIS UNIQUEMENT À L'ADMINISTRATEUR #}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<div class="image-background-favoris">
+    <h1 class="mb-5 pt-5 d-flex justify-content-center">Favoris</h1>
+
+    <div class="favoris-musique">
+        
+        <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+        slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+        coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+
+        {# 1ER BOUCLE "FOR" POUR RÉCUPÉRER TOUTES LES MUSIQUES #}
+        {% for music in favoris %}
+        
+        <swiper-slide>
+            <h5 class="artiste">{{ music.artist }}</h5>
+            <h1 class="titre-musique">{{ music.title }}</h1>
+
+            {# 2ÈME BOUCLE "FOR" POUR L'AJOUT DES MUSIQUES DANS LES FAVORIS #}
+            {% for favorite in music.favorite %}
+            {% if favorite.id == app.user.id %}
+                <a href="{{ path('delete_favoris', {'id': music.id}) }}"><i class="fas fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i></a>
+                {% else %}
+                <a href="{{ path('add_favoris', {'id': music.id}) }}"><i class="far fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i></a>
+            {% endif %}
+            {% else %}
+                <a href="{{ path('add_favoris', {'id': music.id}) }}"><i class="far fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i></a>
+            {% endfor %}
+
+            <img src="{{ asset('uploads/'~music.image~'') }}"  />
+            <audio controls src="{{ asset('uploads/'~music.musicmp3~'') }}" class="musique-audio"></audio>
+        </swiper-slide>
+
+        {% endfor %}
+
+        </swiper-container>
+
+    </div>
+
+</div>
+    
+{% endif %}
+
+
+
+
 {# PAGE FAVORIS UNIQUEMENT AUX MEMBRES #}
 
 {% if is_granted('ROLE_MEMBER') %}
 
 <div class="image-background-favoris">
     <h1 class="mb-5 pt-5 d-flex justify-content-center">Favoris</h1>
+
+    <div class="favoris-musique">
+        
+        <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+        slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+        coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+
+        {# 1ER BOUCLE "FOR" POUR RÉCUPÉRER TOUTES LES MUSIQUES #}
+        {% for music in favoris %}
+                
+        <swiper-slide>
+            <h5 class="artiste">{{ music.artist }}</h5>
+            <h1 class="titre-musique">{{ music.title }}</h1>
+
+            {# 2ÈME BOUCLE "FOR" POUR L'AJOUT DES MUSIQUES DANS LES FAVORIS #}
+            {% for favorite in music.favorite %}
+            {% if favorite.id == app.user.id %}
+                <a href="{{ path('delete_favoris', {'id': music.id}) }}"><i class="fas fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i></a>
+                {% else %}
+                <a href="{{ path('add_favoris', {'id': music.id}) }}"><i class="far fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i></a>
+            {% endif %}
+            {% else %}
+                <a href="{{ path('add_favoris', {'id': music.id}) }}"><i class="far fa-heart js-heart heart" onclick="favoris({{loop.index0}})"></i></a>
+            {% endfor %}
+            <img src="{{ asset('uploads/'~music.image~'') }}"  />
+            <audio controls src="{{ asset('uploads/'~music.musicmp3~'') }}" class="musique-audio"></audio>
+        </swiper-slide>
+
+        {% endfor %}
+
+        </swiper-container>
+
+    </div>
 </div>
 
 {% endif %}
 
-
-{# PAGE FAVORIS UNIQUEMENT À L'ADMINITRATEUR #}
-
-{% if is_granted('ROLE_ADMIN') %}
-
-<div class="image-background-favoris">
-    <h1 class="mb-5 pt-5 d-flex justify-content-center">Favoris</h1>
-</div>
-
-{% endif %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 
 {% endblock %}

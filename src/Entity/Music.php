@@ -37,9 +37,13 @@ class Music
     #[ORM\ManyToMany(targetEntity: Favoris::class, mappedBy: 'music')]
     private Collection $favoris;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favorite')]
+    private Collection $favorite;
+
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +146,30 @@ class Music
         if ($this->favoris->removeElement($favori)) {
             $favori->removeMusic($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(User $favorite): self
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite->add($favorite);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(User $favorite): self
+    {
+        $this->favorite->removeElement($favorite);
 
         return $this;
     }

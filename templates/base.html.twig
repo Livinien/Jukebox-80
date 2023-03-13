@@ -17,37 +17,44 @@
 
   <body>
 
-                  {# HEADER - NAVABAR - PAGE D'ACCUEIL #}
+              {# HEADER - NAVABAR - PAGE D'ACCUEIL #}
 
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand text-light fw-bold" href="{{ path('accueil')}}">JUKEBOX 80</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
-        <div class="navbar-nav ">
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+     <a class="navbar-brand text-light fw-bold" href="{{ path('accueil')}}">JUKEBOX 80</a>
+    <button class="navbar-toggler border border-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5><a href="{{ path('accueil')}}" class="offcanvas-title mt-1 text-light text-decoration-none fw-bold" id="offcanvasNavbarLabel">JUKEBOX 80</a></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-        {% if app.user %}
+          {% if app.user %}
           <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_playlist')}}">Playlist</a> 
           <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_categories')}}">Catégories</a> 
-          <a class="nav-link text-light fw-bold active" href="{{ path('app_jukebox_member_favoris')}}">Favoris</a> 
+          <a class="nav-link text-light fw-bold active" href="{{ path('app_favoris')}}">Favoris</a> 
           <a class="nav-link text-light fw-bold active" href="{{ path('app_account')}}">Profil ({{ app.user.firstname }})</a> 
           <a class="nav-link text-light fw-bold active" href="{{ path('app_logout')}}">Déconnexion</a>
           {% else %}
               <a class="nav-link text-light fw-bold active" href="{{ path('register')}}">Inscription</a> <a class="nav-link text-light fw-bold active" href="{{ path('app_login')}}">Connexion</a>
           {% endif %}
-        </div>
+
+        </ul>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
 
+    {# CONTENU DE LA PAGE D'ACCUEIL DANS INDEX.HTML.TWIG #}
 
-        {# CONTENU DE LA PAGE D'ACCUEIL DANS INDEX.HTML.TWIG #}
-
-        <main class="content-accueil">
-            {% block content %}
-            {% endblock %}
-        </main>
+    <main class="content-accueil">
+        {% block content %}
+        {% endblock %}
+    </main>
 
 
     <script src="assets/JS/app.js"></script>

@@ -19,11 +19,11 @@ class AccountPasswordController extends AbstractController
         $this->entityManager = $entityManager;
     }
     
-    #[Route('/modifier-mon-mot-de-passe', name: 'app_account_password')]
 
 
     // MODIFIIER LE MOT DE PASSE ACTUEL
     
+    #[Route('/modifier-mon-mot-de-passe', name: 'app_account_password')]
     public function index(Request $request, UserPasswordHasherInterface $encoder): Response
     {
 

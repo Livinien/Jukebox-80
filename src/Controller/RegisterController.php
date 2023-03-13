@@ -22,12 +22,11 @@ class RegisterController extends AbstractController
         $this->entityManager = $entityManager;
     }
     
-    #[Route('/inscription', name: 'register')]
+    
 
-    
-    
+    // ROUTE POUR ACCÉDER À LA PAGE D'INSCRIPTION
     // ENVOIE DES INFORMATIONS DANS BASE DE DONNEES
-    
+    #[Route('/inscription', name: 'register')]
     public function index(Request $request, UserPasswordHasherInterface $encoder): Response
     {
 

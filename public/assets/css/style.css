@@ -41,7 +41,9 @@
     padding-top: 30px;
 }
 
-
+.navbar-toggler-icon {
+    color: #fff;
+}
 
 /* PAGE D'INSCRIPTION */
 
@@ -56,6 +58,9 @@
     padding-left: 50px;
 }
 
+.form-text {
+    color: #fff;
+}
 
 
 /* PAGE DE CONNEXION */
